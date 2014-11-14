@@ -3,7 +3,7 @@
 
 Plugin to operate SMS, send / list / intercept / delete / restore, also with bluetooth detection.
 
-## How to Use? ##
+### How to Use? ###
 
 Use the plugin with Cordova CLI:
 
@@ -11,30 +11,34 @@ Use the plugin with Cordova CLI:
 
 # API Overview #
 
-## Methods ##
+### Methods ###
 
-* sendSMS(address(s), text, successCallback, failureCallback);
-* listSMS(filter, successCallback, failureCallback);
-* deleteSMS(filter, successCallback, failureCallback);
+```javascript
+sendSMS(address(s), text, successCallback, failureCallback);
+listSMS(filter, successCallback, failureCallback);
+deleteSMS(filter, successCallback, failureCallback);
 
-* startWatch(successCallback, failureCallback);
-* stopWatch(successCallback, failureCallback);
+startWatch(successCallback, failureCallback);
+stopWatch(successCallback, failureCallback);
 
-* enableIntercept(on_off, successCallback, failureCallback);
-* restoreSMS(msg_or_msgs, successCallback, failureCallback);
+enableIntercept(on_off, successCallback, failureCallback);
+restoreSMS(msg_or_msgs, successCallback, failureCallback);
 
-* getBTState(calbackWithData, failureCallback);
-* listPairedBTDevices(calbackWithData, failureCallback);
+getBTState(calbackWithData, failureCallback);
+listPairedBTDevices(calbackWithData, failureCallback);
 
-* setOptions(options, successCallback, failureCallback);
+setOptions(options, successCallback, failureCallback);
+```
 
-## Events ##
+### Events ###
 
-* onSMSArrive
-* onBluetoothConnected
-* onBluetoothDisconnected
+```javascript
+'onSMSArrive'
+'onBluetoothConnected'
+'onBluetoothDisconnected'
+```
 
-## Quick Start ##
+### Quick Start ###
 
 ```bash
 	# create a demo project
@@ -55,13 +59,13 @@ Use the plugin with Cordova CLI:
     # or import into Xcode / eclipse
 ```
 
-## Full Example Code ##
+### Full Example Code ###
 
 Check the [test/index.html] (https://github.com/floatinghotpot/cordova-plugin-sms/blob/master/test/index.html).
 
 # API Reference #
 
-## sendSMS ##
+### sendSMS ###
 
 * sendSMS(address(s), text, successCallback, failureCallback);
 
@@ -73,7 +77,7 @@ Example Code:
 	if(SMS) SMS.sendSMS(["+8613612345678", "+8613987654321"], "hello, raymond", function(){}, function(){});
 ```
 
-## listSMS ##
+### listSMS ###
 
 * listSMS(filter, successCallback, failureCallback);
 
@@ -105,7 +109,7 @@ Example Code:
         	});
 ```
 
-## deleteSMS ##
+### deleteSMS ###
 
 * deleteSMS(filter, successCallback, failureCallback);
 
@@ -127,7 +131,7 @@ Example Code:
         	});
 ```
 
-## startWatch ##
+### startWatch ###
 
 * startWatch(successCallback, failureCallback);
 
@@ -145,7 +149,7 @@ start observing and send following events to javascript:
         	});
 ```
 
-## stopWatch ##
+### stopWatch ###
 
 * stopWatch(successCallback, failureCallback);
 
@@ -157,7 +161,7 @@ start observing and send following events to javascript:
         	});
 ```
 
-## enableIntercept ##
+### enableIntercept ###
 
 When intercept in ON, other SMS app will not receive when SMS incoming.
 
@@ -180,7 +184,7 @@ When intercept in ON, other SMS app will not receive when SMS incoming.
         }
 ```
 
-## restoreSMS ##
+### restoreSMS ###
 
 Restore the intercepted SMS into Inbox.
 
@@ -201,7 +205,7 @@ Restore the intercepted SMS into Inbox.
         	});
 ```
 
-## getBTState ##
+### getBTState ###
 
 * getBTState(calbackWithData, failureCallback);
 
@@ -228,7 +232,7 @@ Example Code:
         	});
 ```        	
 
-## listPairedBTDevices ##
+### listPairedBTDevices ###
 
 * listPairedBTDevices(calbackWithData, failureCallback)
 
@@ -249,7 +253,7 @@ Example Code:
         	});
 ```        	
 
-## setOptions ##
+### setOptions ###
 
 * setOptions( options, successCallback, failureCallback);
 
@@ -263,7 +267,7 @@ Example Code:
 
 # Events #
 
-## onSMSArrive ##
+### onSMSArrive ###
 
 Triggered when a new SMS is incoming. Need call startWatch() first.
 
@@ -283,7 +287,7 @@ Triggered when a new SMS is incoming. Need call startWatch() first.
             });
 ```
 
-## onBluetoothConnected ##
+### onBluetoothConnected ###
 
 Triggered when a bluetooth is connected.
 
@@ -300,7 +304,7 @@ Triggered when a bluetooth is connected.
             });
 ```
 
-## onBluetoothDisconnected ##
+### onBluetoothDisconnected ###
 
 Triggered when a bluetooth is disconnected.
             
