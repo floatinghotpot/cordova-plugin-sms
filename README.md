@@ -26,6 +26,8 @@ Use the plugin with Cordova CLI:
 * getBTState(calbackWithData, failureCallback);
 * listPairedBTDevices(calbackWithData, failureCallback);
 
+* setOptions(options, successCallback, failureCallback);
+
 ## Events ##
 
 * onSMSArrive
@@ -246,6 +248,18 @@ Example Code:
         	},function(err){
         	});
 ```        	
+
+## setOptions ##
+
+* setOptions( options, successCallback, failureCallback);
+
+Example Code:
+
+```javascript
+	if(SMS) SMS.setOptions({
+		license: 'you@gmail.com/xxxxxxxxx'
+	});
+```
 
 # Events #
 

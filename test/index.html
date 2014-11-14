@@ -82,13 +82,17 @@
     		
         	if(SMS) SMS.listSMS({}, function(data){
     			updateStatus('sms listed as json array');
-    			updateData( JSON.stringify(data) );
+    			//updateData( JSON.stringify(data) );
     			
+    			var html = "";
         		if(Array.isArray(data)) {
         			for(var i in data) {
         				var sms = data[i];
+        				html += sms.address + ": " + sms.body + "<br/>";
         			}
         		}
+        		updateData( html );
+        		
         	}, function(err){
         		updateStatus('error list sms: ' + err);
         	});
@@ -195,7 +199,7 @@
             <button onclick="updateStatus('');updateData('');smsList.length=0;">Clear</button><br/>
             
             <div id='status'></div><hr/>
-            <div id='data'></div>
+            <div id='data' style='text-align:left;'></div>
        </div>
     </body>
 </html>
