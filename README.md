@@ -65,6 +65,14 @@ Check the [API Reference](https://github.com/floatinghotpot/cordova-plugin-sms/b
 
 Check the [Example Code in test/index.html](https://github.com/floatinghotpot/cordova-plugin-sms/blob/master/test/index.html).
 
+### Credits ###
+
+The plugin is created and maintained by Raymond Xie.
+
+You can use it for FREE, it works in trial mode by default.
+
+[A valid license](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=86JSRPJDQUMRU) is required to get support, or use it in commercial product.
+
 ## See Also ##
 
 More Cordova/PhoneGap plugins by Raymond Xie, [visit http://rjfun.github.io/](http://rjfun.github.io/).
