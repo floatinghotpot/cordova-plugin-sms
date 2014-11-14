@@ -71,7 +71,7 @@ The plugin is created and maintained by Raymond Xie.
 
 You can use it for FREE, it works in trial mode by default.
 
-[A valid license](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=86JSRPJDQUMRU) is required to get support, or use it in commercial product.
+[A valid license](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=86JSRPJDQUMRU) is required to get email support, or use it in commercial product.
 
 ## See Also ##
 
