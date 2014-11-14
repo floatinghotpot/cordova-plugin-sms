@@ -67,6 +67,8 @@ Check the [Example Code in test/index.html](https://github.com/floatinghotpot/co
 
 ## See Also ##
 
+More Cordova/PhoneGap plugins by Raymond Xie, [visit http://rjfun.github.io/](http://rjfun.github.io/).
+
 Cordova/PhoneGap plugins for the world leading Mobile Ad services:
 
 * [AdMob PluginPro](https://github.com/floatinghotpot/cordova-admob-pro), for Google AdMob/DoubleClick.
@@ -76,8 +78,6 @@ Cordova/PhoneGap plugins for the world leading Mobile Ad services:
 * [mMedia PluginPro](https://github.com/floatinghotpot/cordova-plugin-mmedia), for Millennial Meida.
 * [MobFox PluginPro](https://github.com/floatinghotpot/cordova-mobfox-pro), for MobFox.
 * [MoPub PluginPro](https://github.com/floatinghotpot/cordova-plugin-mopub), for MoPub.
-
-More Cordova/PhoneGap plugins by Raymond Xie, [visit http://rjfun.github.io/](http://rjfun.github.io/).
 
 Project outsourcing and consulting service is also available. Please [contact us](http://floatinghotpot.github.io) if you have the business needs.
 
