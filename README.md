@@ -65,6 +65,10 @@ Check the [API Reference](https://github.com/floatinghotpot/cordova-plugin-sms/b
 
 Check the [Example Code in test/index.html](https://github.com/floatinghotpot/cordova-plugin-sms/blob/master/test/index.html).
 
+### Demo ###
+
+![ScreenShot](docs/sms.jpg)
+
 ### Credits ###
 
 The plugin is created and maintained by Raymond Xie.
