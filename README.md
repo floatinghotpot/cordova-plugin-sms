@@ -7,7 +7,7 @@ Plugin to operate SMS, send / list / intercept / delete / restore, also with blu
 
 Use the plugin with Cordova CLI:
 
-```cordova plugin add com.google.cordova.sms```
+```cordova plugin add com.rjfun.cordova.sms```
 
 # API Overview #
 
@@ -47,7 +47,7 @@ setOptions(options, successCallback, failureCallback);
     cordova platform add android
     
     # now add plugin
-    cordova plugin add com.google.cordova.sms
+    cordova plugin add com.rjfun.cordova.sms
     
     # copy the demo file
     rm -r www/*; cp plugins/com.rjfun.cordova.sms/test/* www/;
