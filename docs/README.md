@@ -1,7 +1,7 @@
 
 # cordova-plugin-sms #
 
-Plugin to operate SMS, send / list / intercept / delete / restore, also with bluetooth detection.
+Plugin to operate SMS, send / list / intercept / delete / restore.
 
 ### How to Use? ###
 
@@ -45,9 +45,6 @@ stopWatch(successCallback, failureCallback);
 enableIntercept(on_off, successCallback, failureCallback);
 restoreSMS(msg_or_msgs, successCallback, failureCallback);
 
-getBTState(calbackWithData, failureCallback);
-listPairedBTDevices(calbackWithData, failureCallback);
-
 setOptions(options, successCallback, failureCallback);
 ```
 
@@ -55,8 +52,6 @@ setOptions(options, successCallback, failureCallback);
 
 ```javascript
 'onSMSArrive'
-'onBluetoothConnected'
-'onBluetoothDisconnected'
 ```
 
 ### Full Example Code ###
@@ -85,6 +80,8 @@ Example Code:
 
 ```javascript
         	var filter = {
+        		box : 'inbox', // 'inbox' (default), 'sent', 'draft', 'outbox', 'failed', 'queued', and '' for all
+        		
         		// following 4 filters should NOT be used together, they are OR relationship
         		read : 0, // 0 for unread SMS, 1 for SMS already read
         		_id : 1234, // specify the msg id
@@ -118,6 +115,8 @@ Example Code:
 ```javascript
 
         	var filter = {
+        		box : 'inbox', // 'inbox' (default), 'sent', 'draft', 'outbox', 'failed', 'queued', and '' for all
+        		
         		// the following 4 filters are OR relationship
         		_id : 1234, // given a sms id, recommend ONLY use this filter
         		read : 1, // delete all read SMS
@@ -205,54 +204,6 @@ Restore the intercepted SMS into Inbox.
         	});
 ```
 
-### getBTState ###
-
-* getBTState(calbackWithData, failureCallback);
-
-It will return the status info of bluetooth adapter.
-
-Example Code:
-
-```javascript
-        	if(SMS) SMS.getBTState(function(data){
-        		for(var i in data) {
-        			var device = data[i];
-        			
-        			// device.name
-        			// device.address
-        			// device.enabled
-        			// device.discovering
-        			// device.headset
-        			// device.a2dp
-        			// device.health
-            	
-        		}
-        		//updateData( JSON.stringify(data) );
-        	},function(err){
-        	});
-```        	
-
-### listPairedBTDevices ###
-
-* listPairedBTDevices(calbackWithData, failureCallback)
-
-Example Code:
-
-```javascript
-        	if(SMS) SMS.listPairedBTDevices(function(data){
-        		for(var i in data) {
-        			var device = data[i];
-        			
-        			// device.name
-        			// device.class
-        			// device.address
-            	
-        		}
-        		//updateData( JSON.stringify(data) );
-        	},function(err){
-        	});
-```        	
-
 ### setOptions ###
 
 * setOptions( options, successCallback, failureCallback);
@@ -284,40 +235,6 @@ Triggered when a new SMS is incoming. Need call startWatch() first.
             	var divdata = $('div#data');
             	divdata.html( divdata.html() + JSON.stringify( sms ) );
             	
-            });
-```
-
-### onBluetoothConnected ###
-
-Triggered when a bluetooth is connected.
-
-```javascript
-            document.addEventListener('onBluetoothConnected', function(e){
-            	var device = e.data;
-
-            	// device.name
-            	// device.class
-            	// device.address
-            	
-            	updateStatus('bluetooth connected');
-            	updateData( JSON.stringify( device ) );
-            });
-```
-
-### onBluetoothDisconnected ###
-
-Triggered when a bluetooth is disconnected.
-            
-```javascript
-            document.addEventListener('onBluetoothDisconnected', function (e){
-            	var device = e.data;
-            	
-            	// device.name
-            	// device.class
-            	// device.address
-
-            	updateStatus('bluetooth disconnected');
-            	updateData( JSON.stringify( device ) );
             });
 ```
 

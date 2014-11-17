@@ -24,9 +24,6 @@ stopWatch(successCallback, failureCallback);
 enableIntercept(on_off, successCallback, failureCallback);
 restoreSMS(msg_or_msgs, successCallback, failureCallback);
 
-getBTState(calbackWithData, failureCallback);
-listPairedBTDevices(calbackWithData, failureCallback);
-
 setOptions(options, successCallback, failureCallback);
 ```
 
@@ -34,8 +31,6 @@ setOptions(options, successCallback, failureCallback);
 
 ```javascript
 'onSMSArrive'
-'onBluetoothConnected'
-'onBluetoothDisconnected'
 ```
 
 ### Quick Start ###

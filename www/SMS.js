@@ -28,14 +28,6 @@ safesmsExport.setOptions = function(options, successCallback, failureCallback) {
 	  }
 	};
 
-safesmsExport.getBTState = function(calbackWithData, failureCallback) {
-	cordova.exec( calbackWithData, failureCallback, 'SMS', 'getBTState', [] );
-};
-
-safesmsExport.listPairedBTDevices = function(calbackWithData, failureCallback) {
-	cordova.exec( calbackWithData, failureCallback, 'SMS', 'listPairedBTDevices', [] );
-};
-
 safesmsExport.startWatch = function(successCallback, failureCallback) {
 	cordova.exec( successCallback, failureCallback, 'SMS', 'startWatch', [] );
 };
@@ -86,9 +78,6 @@ safesmsExport.restoreSMS = function(msg, successCallback, failureCallback) {
  * Events:
  * 
  * document.addEventListener('onSMSArrive', function(e) { var sms = e.data; }
- * 
- * document.addEventListener('onBluetoothConnected', function(e) { var deviceinfo = e.data; }
- * document.addEventListener('onBluetoothDisconnected', function(e) { var deviceinfo = e.data; }
  * 
  */
 

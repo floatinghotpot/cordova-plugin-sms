@@ -41,19 +41,6 @@
             	divdata.html( divdata.html() + JSON.stringify( data ) );
             	
             });
-            document.addEventListener('onBluetoothConnected', function(e){
-            	var data = e.data;
-            	
-            	updateStatus('bluetooth connected');
-            	updateData( JSON.stringify( data ) );
-            });
-            
-            document.addEventListener('onBluetoothDisconnected', function (e){
-            	var data = e.data;
-
-            	updateStatus('bluetooth disconnected');
-            	updateData( JSON.stringify( data ) );
-            });
         }
         
         function update( id, str ) {
@@ -142,22 +129,6 @@
         	});
         }
         
-        function getBTState() {
-        	if(SMS) SMS.getBTState(function(data){
-        		updateStatus('BT state returned');
-        		updateData( JSON.stringify(data) );
-        	},function(err){
-        	});
-        }
-        
-        function listBT() {
-        	if(SMS) SMS.listPairedBTDevices(function(data){
-        		updateStatus('BT device listed');
-        		updateData( JSON.stringify(data) );
-        	},function(err){
-        	});
-        }
-        
         function toggleIntercept() {
         	interceptEnabled = ! interceptEnabled;
         	
@@ -191,10 +162,6 @@
 			<button id='enable_intercept' onclick='toggleIntercept();'>Enable</button> 
             <button onclick="restoreAllSMS();">Restore SMS</button>
             <hr/>
-			
-			Bluetooth Devices<br/>
-            <button onclick="getBTState();">Get State</button> 
-            <button onclick="listBT();">List Devices</button><br/>
 			
             <button onclick="updateStatus('');updateData('');smsList.length=0;">Clear</button><br/>
             
