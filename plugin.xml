@@ -3,7 +3,7 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	id="com.rjfun.cordova.sms"
-	version="1.0.1">
+	version="1.0.2">
       
     <name>SMS</name>
 	<description>Plugin to operate SMS, send/list/intercept/delete/restore</description>
