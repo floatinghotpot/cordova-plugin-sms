@@ -1,0 +1,29 @@
+{
+  "name": "cordova-plugin-sms",
+  "version": "1.0.2",
+  "description": "Cordova plugin to operate SMS, send/list/intercept/delete/restore",
+  "cordova": {
+    "id": "cordova-plugin-sms",
+    "platforms": [
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/floatinghotpot/cordova-plugin-sms.git"
+  },
+  "bugs": {
+    "url": "https://github.com/floatinghotpot/cordova-plugin-sms/issues"
+  },
+  "keywords": [
+    "cordova",
+    "ecosystem:cordova",
+    "sms",
+    "rjfun"
+  ],
+  "author": {
+    "name": "Raymond Xie",
+    "email": "rjfun.mobile@gmail.com"
+  },
+  "license": "MIT"
+}
