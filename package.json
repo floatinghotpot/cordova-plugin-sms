@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-sms",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Cordova plugin to operate SMS, send/list/intercept/delete/restore",
   "cordova": {
     "id": "cordova-plugin-sms",
