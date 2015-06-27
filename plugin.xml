@@ -38,7 +38,7 @@
 		    <uses-permission android:name="android.permission.SEND_SMS" />
           </config-file>
           
-		<source-file src="src/android/cordova-sms.jar" target-dir="libs"/>
+		<source-file src="src/android/SMSPlugin.java" target-dir="src/com/rjfun/cordova/sms"/>
     </platform>
 
 </plugin>
