@@ -1,13 +1,19 @@
 
 # cordova-plugin-sms #
 
-Plugin to operate SMS, send / list / intercept / delete / restore, also with bluetooth detection.
+Plugin to operate SMS, send / list / intercept / delete / restore.
 
 ### How to Use? ###
 
-Use the plugin with Cordova CLI:
+Use the plugin with Cordova CLI (v5.x or above):
+```bash
+cordova plugin add cordova-plugin-sms
+```
 
-```cordova plugin add com.rjfun.cordova.sms```
+When use with PhoneGap Build, write following line in your config.xml:
+```xml
+<gap:plugin name="cordova-plugin-sms" source="npm" />
+```
 
 # API Overview #
 
@@ -42,10 +48,10 @@ setOptions(options, successCallback, failureCallback);
     cordova platform add android
     
     # now add plugin
-    cordova plugin add com.rjfun.cordova.sms
+    cordova plugin add cordova-plugin-sms
     
     # copy the demo file
-    rm -r www/*; cp plugins/com.rjfun.cordova.sms/test/* www/;
+    rm -r www/*; cp plugins/cordova-plugin-sms/test/* www/;
     
 	# now build and run the demo in your device or emulator
     cordova prepare; 

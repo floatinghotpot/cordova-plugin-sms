@@ -75,6 +75,7 @@
         		if(Array.isArray(data)) {
         			for(var i in data) {
         				var sms = data[i];
+        				smsList.push(sms);
         				html += sms.address + ": " + sms.body + "<br/>";
         			}
         		}
@@ -161,6 +162,7 @@
             <span id='intercept'/>Intercept OFF</span><br/>
 			<button id='enable_intercept' onclick='toggleIntercept();'>Enable</button> 
             <button onclick="restoreAllSMS();">Restore SMS</button>
+            <button onclick="deleteLastSMS();">Delete Last SMS</button>
             <hr/>
 			
             <button onclick="updateStatus('');updateData('');smsList.length=0;">Clear</button><br/>

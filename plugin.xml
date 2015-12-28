@@ -3,7 +3,7 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	id="cordova-plugin-sms"
-	version="1.0.4">
+	version="1.0.5">
       
     <name>SMS</name>
 	<description>Cordova plugin to operate SMS, send/list/intercept/delete/restore</description>
