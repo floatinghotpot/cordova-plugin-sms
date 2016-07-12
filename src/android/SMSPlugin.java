@@ -41,6 +41,7 @@ extends CordovaPlugin {
     private static final String ACTION_DELETE_SMS = "deleteSMS";
     private static final String ACTION_RESTORE_SMS = "restoreSMS";
     private static final String ACTION_SEND_SMS = "sendSMS";
+    private static final String ACTION_COUNT_SMS = "count";
     
     public static final String OPT_LICENSE = "license";
     private static final String SEND_SMS_ACTION = "SENT_SMS_ACTION";
@@ -114,6 +115,9 @@ extends CordovaPlugin {
             JSONArray addressList = inputs.optJSONArray(0);
             String message = inputs.optString(1);
             result = this.sendSMS(addressList, message, callbackContext);
+        } else if (ACTION_COUNT_SMS.equals(action)) {
+            JSONObject filters = inputs.optJSONObject(0);
+            result = this.count(filters, callbackContext);
         } else {
             Log.d(LOGTAG, String.format("Invalid action passed: %s", action));
             result = new PluginResult(PluginResult.Status.INVALID_ACTION);
@@ -229,6 +233,25 @@ extends CordovaPlugin {
         return null;
     }
 
+    private PluginResult count(JSONObject filter, CallbackContext callbackContext) {
+        Log.i(LOGTAG, ACTION_LIST_SMS);
+        String uri_filter = filter.has(BOX) ? filter.optString(BOX) : "inbox";
+        int fread = filter.has(READ) ? filter.optInt(READ) : -1;
+        int fid = filter.has("_id") ? filter.optInt("_id") : -1;
+        String faddress = filter.optString(ADDRESS);
+        String fcontent = filter.optString(BODY);
+        int indexFrom = filter.has("indexFrom") ? filter.optInt("indexFrom") : 0;
+        // int maxCount = filter.has("maxCount") ? filter.optInt("maxCount") : 10;
+        JSONArray jsons = new JSONArray();
+        Activity ctx = this.cordova.getActivity();
+        Uri uri = Uri.parse((SMS_URI_ALL + uri_filter));
+        Cursor cur = ctx.getContentResolver().query(uri, (String[])null, "", (String[])null, null);
+        
+        callbackContext.success(cur.getCount());
+        
+        return null;
+    }
+
     private PluginResult listSMS(JSONObject filter, CallbackContext callbackContext) {
         Log.i(LOGTAG, ACTION_LIST_SMS);
         String uri_filter = filter.has(BOX) ? filter.optString(BOX) : "inbox";
@@ -260,7 +283,7 @@ extends CordovaPlugin {
             if (! matchFilter) continue;
             
             if (i < indexFrom) continue;
-            if (i >= indexFrom + maxCount) break;
+            if (maxCount > 0 && i >= indexFrom + maxCount) break;
             ++i;
 
             if ((json = this.getJsonFromCursor(cur)) == null) {
@@ -476,6 +499,7 @@ extends CordovaPlugin {
     	values.put( SERVICE_CENTER, json.optString(SERVICE_CENTER));
     	return values;
     }
+
     private PluginResult restoreSMS(JSONArray array, CallbackContext callbackContext) {
         ContentResolver resolver = this.cordova.getActivity().getContentResolver();
         Uri uri = Uri.parse(SMS_URI_INBOX);

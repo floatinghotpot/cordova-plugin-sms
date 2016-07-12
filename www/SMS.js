@@ -1,3 +1,4 @@
+cordova.define("cordova-plugin-sms.SMS", function(require, exports, module) {
 
 var argscheck = require('cordova/argscheck'),
     exec = require('cordova/exec');
@@ -61,6 +62,10 @@ safesmsExport.listSMS = function(filter, successCallback, failureCallback) {
 	cordova.exec( successCallback, failureCallback, 'SMS', 'listSMS', [ filter ] );
 };
 
+safesmsExport.count = function(filter, successCallback, failureCallback) {
+	cordova.exec( successCallback, failureCallback, 'SMS', 'count', [ filter ] );
+};
+
 safesmsExport.deleteSMS = function(filter, successCallback, failureCallback) {
 	cordova.exec( successCallback, failureCallback, 'SMS', 'deleteSMS', [ filter ] );
 };
@@ -84,3 +89,5 @@ safesmsExport.restoreSMS = function(msg, successCallback, failureCallback) {
 
 module.exports = safesmsExport;
 
+
+});
