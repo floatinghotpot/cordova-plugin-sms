@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
+import android.telephony.PhoneNumberUtils;
 import android.util.Log;
 
 import java.security.MessageDigest;
@@ -273,7 +274,7 @@ extends CordovaPlugin {
             } else if (fread > -1) {
                 matchFilter = (fread == cur.getInt(cur.getColumnIndex(READ)));
             } else if (faddress.length() > 0) {
-                matchFilter = faddress.equals(cur.getString(cur.getColumnIndex(ADDRESS)).trim());
+                matchFilter = PhoneNumberUtils.compare(faddress, cur.getString(cur.getColumnIndex(ADDRESS)).trim());
             } else if (fcontent.length() > 0) {
                 matchFilter = fcontent.equals(cur.getString(cur.getColumnIndex(BODY)).trim());
             } else {
@@ -451,7 +452,7 @@ extends CordovaPlugin {
                 int read = cur.getInt(cur.getColumnIndex(READ));
                 boolean matchRead = fread > -1 && fread == read;
                 String address = cur.getString(cur.getColumnIndex(ADDRESS)).trim();
-                boolean matchAddr = faddress.length() > 0 && address.equals(faddress);
+                boolean matchAddr = faddress.length() > 0 && PhoneNumberUtils.compare(faddress, address);
                 String body = cur.getString(cur.getColumnIndex(BODY)).trim();
                 boolean matchContent = fcontent.length() > 0 && body.equals(fcontent);
                 if (!matchId && !matchRead && !matchAddr && !matchContent) continue;
