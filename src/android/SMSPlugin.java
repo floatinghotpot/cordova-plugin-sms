@@ -16,7 +16,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
-import android.telephony.PhoneNumberUtils;
 import android.util.Log;
 
 import java.security.MessageDigest;
@@ -41,6 +40,7 @@ extends CordovaPlugin {
     private static final String ACTION_DELETE_SMS = "deleteSMS";
     private static final String ACTION_RESTORE_SMS = "restoreSMS";
     private static final String ACTION_SEND_SMS = "sendSMS";
+    private static final String ACTION_COUNT_SMS = "count";
     
     public static final String OPT_LICENSE = "license";
     private static final String SEND_SMS_ACTION = "SENT_SMS_ACTION";
@@ -114,6 +114,9 @@ extends CordovaPlugin {
             JSONArray addressList = inputs.optJSONArray(0);
             String message = inputs.optString(1);
             result = this.sendSMS(addressList, message, callbackContext);
+        } else if (ACTION_COUNT_SMS.equals(action)) {
+            JSONObject filters = inputs.optJSONObject(0);
+            result = this.count(filters, callbackContext);
         } else {
             Log.d(LOGTAG, String.format("Invalid action passed: %s", action));
             result = new PluginResult(PluginResult.Status.INVALID_ACTION);
@@ -229,6 +232,25 @@ extends CordovaPlugin {
         return null;
     }
 
+    private PluginResult count(JSONObject filter, CallbackContext callbackContext) {
+        Log.i(LOGTAG, ACTION_LIST_SMS);
+        String uri_filter = filter.has(BOX) ? filter.optString(BOX) : "inbox";
+        int fread = filter.has(READ) ? filter.optInt(READ) : -1;
+        int fid = filter.has("_id") ? filter.optInt("_id") : -1;
+        String faddress = filter.optString(ADDRESS);
+        String fcontent = filter.optString(BODY);
+        int indexFrom = filter.has("indexFrom") ? filter.optInt("indexFrom") : 0;
+        // int maxCount = filter.has("maxCount") ? filter.optInt("maxCount") : 10;
+        JSONArray jsons = new JSONArray();
+        Activity ctx = this.cordova.getActivity();
+        Uri uri = Uri.parse((SMS_URI_ALL + uri_filter));
+        Cursor cur = ctx.getContentResolver().query(uri, (String[])null, "", (String[])null, null);
+        
+        callbackContext.success(cur.getCount());
+        
+        return null;
+    }
+
     private PluginResult listSMS(JSONObject filter, CallbackContext callbackContext) {
         Log.i(LOGTAG, ACTION_LIST_SMS);
         String uri_filter = filter.has(BOX) ? filter.optString(BOX) : "inbox";
@@ -251,7 +273,7 @@ extends CordovaPlugin {
             } else if (fread > -1) {
                 matchFilter = (fread == cur.getInt(cur.getColumnIndex(READ)));
             } else if (faddress.length() > 0) {
-                matchFilter = PhoneNumberUtils.compare(faddress, cur.getString(cur.getColumnIndex(ADDRESS)).trim());
+                matchFilter = faddress.equals(cur.getString(cur.getColumnIndex(ADDRESS)).trim());
             } else if (fcontent.length() > 0) {
                 matchFilter = fcontent.equals(cur.getString(cur.getColumnIndex(BODY)).trim());
             } else {
@@ -260,7 +282,7 @@ extends CordovaPlugin {
             if (! matchFilter) continue;
             
             if (i < indexFrom) continue;
-            if (i >= indexFrom + maxCount) break;
+            if (maxCount > 0 && i >= indexFrom + maxCount) break;
             ++i;
 
             if ((json = this.getJsonFromCursor(cur)) == null) {
@@ -429,7 +451,7 @@ extends CordovaPlugin {
                 int read = cur.getInt(cur.getColumnIndex(READ));
                 boolean matchRead = fread > -1 && fread == read;
                 String address = cur.getString(cur.getColumnIndex(ADDRESS)).trim();
-                boolean matchAddr = faddress.length() > 0 && PhoneNumberUtils.compare(faddress, address);
+                boolean matchAddr = faddress.length() > 0 && address.equals(faddress);
                 String body = cur.getString(cur.getColumnIndex(BODY)).trim();
                 boolean matchContent = fcontent.length() > 0 && body.equals(fcontent);
                 if (!matchId && !matchRead && !matchAddr && !matchContent) continue;
@@ -476,6 +498,7 @@ extends CordovaPlugin {
     	values.put( SERVICE_CENTER, json.optString(SERVICE_CENTER));
     	return values;
     }
+
     private PluginResult restoreSMS(JSONArray array, CallbackContext callbackContext) {
         ContentResolver resolver = this.cordova.getActivity().getContentResolver();
         Uri uri = Uri.parse(SMS_URI_INBOX);
