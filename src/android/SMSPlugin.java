@@ -259,7 +259,7 @@ extends CordovaPlugin {
             }
             if (! matchFilter) continue;
             ++i;
-            if (i < indexFrom) continue;
+            if (i <= indexFrom) continue;
             if (i > indexFrom + maxCount) break; 
 
             if ((json = this.getJsonFromCursor(cur)) == null) {
