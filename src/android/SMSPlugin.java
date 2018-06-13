@@ -258,10 +258,9 @@ extends CordovaPlugin {
                 matchFilter = true;
             }
             if (! matchFilter) continue;
-            
-            if (i < indexFrom) continue;
-            if (i >= indexFrom + maxCount) break;
             ++i;
+            if (i <= indexFrom) continue;
+            if (i > indexFrom + maxCount) break; 
 
             if ((json = this.getJsonFromCursor(cur)) == null) {
                 callbackContext.error("failed to get json from cursor");
