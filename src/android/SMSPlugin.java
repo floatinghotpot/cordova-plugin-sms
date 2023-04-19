@@ -203,7 +203,7 @@ extends CordovaPlugin {
         if (this.cordova.getActivity().getPackageManager().hasSystemFeature("android.hardware.telephony")) {
             int n;
             if ((n = addressList.length()) > 0) {
-                PendingIntent sentIntent = PendingIntent.getBroadcast((Context)this.cordova.getActivity(), (int)0, (Intent)new Intent("SENDING_SMS"), (int)0);
+                PendingIntent sentIntent = PendingIntent.getBroadcast((Context)this.cordova.getActivity(), (int)0, (Intent)new Intent("SENDING_SMS"), PendingIntent.FLAG_IMMUTABLE);
                 SmsManager sms = SmsManager.getDefault();
                 for (int i = 0; i < n; ++i) {
                     String address;
@@ -211,7 +211,7 @@ extends CordovaPlugin {
                     sms.sendTextMessage(address, null, text, sentIntent, (PendingIntent)null);
                 }
             } else {
-                PendingIntent sentIntent = PendingIntent.getActivity((Context)this.cordova.getActivity(), (int)0, (Intent)new Intent("android.intent.action.VIEW"), (int)0);
+                PendingIntent sentIntent = PendingIntent.getActivity((Context)this.cordova.getActivity(), (int)0, (Intent)new Intent("android.intent.action.VIEW"), PendingIntent.FLAG_IMMUTABLE);
                 Intent intent = new Intent("android.intent.action.VIEW");
                 intent.putExtra("sms_body", text);
                 intent.setType("vnd.android-dir/mms-sms");
